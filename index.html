@@ -208,7 +208,7 @@ University of Dayton</div>
 </div>
 <div id="load-packages-and-read-the-flights-data" class="slide section level2">
 <h1>Load packages and read the Flights Data</h1>
-<p>First, we load the necessary packages, check conflict functions and import the dataset <strong>flights</strong> from the R package <span style="color:red">nycflights13</span>.</p>
+<p>First, we load the necessary packages, check conflict functions, and import the dataset <strong>flights</strong> from the R package <span style="color:red">nycflights13</span>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conflicted)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span>
@@ -756,8 +756,8 @@ University of Dayton</div>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>not_cancelled <span class="sc">%&gt;%</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">%&gt;%</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">first =</span> <span class="fu">min</span>(dep_time),</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">last =</span> <span class="fu">max</span>(dep_time)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">first =</span> <span class="fu">min</span>(dep_time), <span class="co"># the first flight departed each day</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">last =</span> <span class="fu">max</span>(dep_time) <span class="co"># the last flight departed each day</span></span>
 <span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 365 x 5
 ## # Groups:   year, month [12]
@@ -777,6 +777,7 @@ University of Dayton</div>
 <ul>
 <li>Measures of position: <span style="color:blue">first()</span>, <span style="color:blue">nth(x, 2)</span>, <span style="color:blue">last()</span></li>
 </ul>
+<p>The following code chunk finds the first and last departure for each day</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>not_cancelled <span class="sc">%&gt;%</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">%&gt;%</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
